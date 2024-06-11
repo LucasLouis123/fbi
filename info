@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My PC Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My PC Information</h1>
+        <h2>Operating System</h2>
+        <p id="os"></p>
+        <h2>Browser</h2>
+        <p id="browser"></p>
+        <h2>Screen Resolution</h2>
+        <p id="screen"></p>
+        <h2>Memory</h2>
+        <p id="memory"></p>
+        <h2>CPU</h2>
+        <p id="cpu"></p>
+    </div>
+    <script>
+        document.getElementById('os').innerText = 'OS: ' + navigator.platform;
+        document.getElementById('browser').innerText = 'Browser: ' + navigator.appCodeName + ' ' + navigator.appVersion;
+        document.getElementById('screen').innerText = 'Screen Resolution: ' + screen.width + ' x ' + screen.height;
+        
+        if (navigator.deviceMemory) {
+            document.getElementById('memory').innerText = 'Memory: ' + navigator.deviceMemory + ' GB';
+        } else {
+            document.getElementById('memory').innerText = 'Memory information is not available';
+        }
+        
+        const getCPUInfo = async () => {
+            if ('hardwareConcurrency' in navigator) {
+                document.getElementById('cpu').innerText = 'Number of CPU Cores: ' + navigator.hardwareConcurrency;
+            } else {
+                document.getElementById('cpu').innerText = 'CPU information is not available';
+            }
+        };
+        
+        getCPUInfo();
+    </script>
+</body>
+</html>
